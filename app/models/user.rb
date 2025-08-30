@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -15,7 +16,15 @@ class User < ApplicationRecord
 
   
   
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  def get_profile_image(width = nil, height = nil)
+    if profile_image.attached?
+      if width && height
+        profile_image.variant(resize_to_limit: [width, height])
+      else
+        profile_image
+      end
+    else
+      'no_image.jpg'
   end
+end
 end
