@@ -1,9 +1,7 @@
 class BooksController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
-  end
+
 
   def show
     @book = Book.find(params[:id])
