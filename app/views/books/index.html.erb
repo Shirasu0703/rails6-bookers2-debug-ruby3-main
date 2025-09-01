@@ -21,6 +21,11 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'index', books: @books%>
+      <% if current_user.following?(user) %>
+        <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
+      <% else %>
+        <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+      <% end %>
     </div>
   </div>
 </div>
