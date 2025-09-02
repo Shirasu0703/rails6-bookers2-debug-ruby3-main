@@ -1,17 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
-  before_action :set_user, only: [:show, :followings, :followers]
 
-  def followings
-    @users = @user.following_users
-  end
-
-  def followers
-    @users = @user.follower_users
-  end
   
   def show
+    @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
   end
@@ -22,9 +15,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "You have updated user successfully."
     else
@@ -33,10 +28,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
@@ -48,6 +39,4 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
-
 end
