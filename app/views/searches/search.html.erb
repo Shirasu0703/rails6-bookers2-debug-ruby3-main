@@ -2,7 +2,6 @@
   <%= render "searches/search", range_options: [['User'], ['Book']] %>
 </div>
   <h2>Books search for "<%= params[:word] %>"</h2>
-
 <table class="table table-hover table-inverse">
   <% if @range == "User" %>
   <thead>
@@ -21,7 +20,6 @@
         </tr>
       <% end %>
     </tbody>
-
   <% else %>
     <thead>
       <tr>
