@@ -1,5 +1,6 @@
 class CreateFavorites < ActiveRecord::Migration[6.1]
   def change
+    add_index :favorites, [:user_id, :book_id], unique: true
     create_table :favorites do |t|
       t.integer :user_id
       t.integer :post_image_id
