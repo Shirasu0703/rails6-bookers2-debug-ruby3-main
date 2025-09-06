@@ -7,6 +7,24 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+
+  <div class="form-group position-static">
+    <p>Rate</p>
+    <div id="post_raty"></div>
+    <% if book.id.nil? %>
+      <script>
+        var elem = document.querySelector('#post_raty');
+        var opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star_off.png) %>",
+          scoreName: 'book[star]',
+        };
+        raty(elem,opt);
+      </script>
+    <% else %>
+      <%= render "output_star", book: book %>
+    <% end %>
+
   <div class="form-group">
     <%= f.submit "Create Book", class: 'btn btn-success' %>
   </div>
