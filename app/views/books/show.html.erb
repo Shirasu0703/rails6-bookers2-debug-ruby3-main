@@ -7,7 +7,6 @@
       <%= render 'form', book: Book.new %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <%= render "searches/search", range_options: [['User'], ['Book']] %>
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
@@ -19,6 +18,11 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
           <td class="favorite-<%= @book.id %>"><%= render "favorites/btn", book: @book %></td>
+          <td>
+            <% if @book.category.present? %>
+              <%= link_to @book.category, tag_searches_search_path(content: @book.category) %>
+            <% end %>
+          </td>
           <td>コメント数：<%= @book.book_comments.count %></td>
           <td><%= render "devise/shared/output_star", book: @book %></td>
           <% if @book.user == current_user %>
