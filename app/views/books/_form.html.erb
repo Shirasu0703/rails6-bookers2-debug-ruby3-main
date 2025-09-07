@@ -13,17 +13,19 @@
     <div id="post_raty"></div>
     <% if book.id.nil? %>
       <script>
-        var elem = document.querySelector('#post_raty');
+        var elem = document.querySelector('#post_raty')
         var opt = {
           starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star_off.png) %>",
+          starOff: "<%= asset_path('star-off.png') %>",
           scoreName: 'book[star]',
         };
         raty(elem,opt);
       </script>
-    <% else %>
-      <%= render "output_star", book: book %>
-    <% end %>
+      <% else %>
+      <%= render "devise/shared/output_star", book: book %>
+      <% end %>
+
+  </div>
 
   <div class="form-group">
     <%= f.submit "Create Book", class: 'btn btn-success' %>
