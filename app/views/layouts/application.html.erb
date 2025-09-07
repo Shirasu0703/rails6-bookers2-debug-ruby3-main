@@ -12,6 +12,10 @@
   <body>
     <%= render 'layouts/header' %>
       <main>
+        <div class="d-flex col-md-8 offset-md-1">
+          <%= render "searches/search", range_options: [['User'], ['Book']] %>
+          <%= render "tag_searches/tagsearch" %>
+        </div>
         <p id="notice"><%= notice %></p>
       </main>
     <%= yield %>

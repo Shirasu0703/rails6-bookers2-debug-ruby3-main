@@ -21,12 +21,15 @@
         };
         raty(elem,opt);
       </script>
-      <% else %>
+    <% else %>
       <%= render "devise/shared/output_star", book: book %>
-      <% end %>
-
+    <% end %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :Category %>
+    <%= f.text_field :category, class: "form-control book_category" %>
+  </div>
   <div class="form-group">
     <%= f.submit "Create Book", class: 'btn btn-success' %>
   </div>
