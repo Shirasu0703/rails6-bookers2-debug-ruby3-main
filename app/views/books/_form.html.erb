@@ -10,24 +10,31 @@
 
   <div class="form-group position-static">
     <p>Rate</p>
-    <div id="post_raty"></div>
     <% if book.id.nil? %>
+    <div id="post_raty"></div>
       <script>
-        var elem = document.querySelector('#post_raty')
-        var opt = {
+        $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#post_raty');
+        if (elem == null) return;
+
+        elem.innerHTML = ""
+        let opt = {
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
           scoreName: 'book[star]',
         };
         raty(elem,opt);
+      });
       </script>
     <% else %>
-      <%= render "devise/shared/output_star", book: book %>
+      <div class="form-group">
+        <%= render "devise/shared/output_star", book: book %>
+      </div>
     <% end %>
   </div>
 
   <div class="form-group">
-    <%= f.label :Category %>
+    <%= f.label :Tag %>
     <%= f.text_field :category, class: "form-control book_category" %>
   </div>
   <div class="form-group">
