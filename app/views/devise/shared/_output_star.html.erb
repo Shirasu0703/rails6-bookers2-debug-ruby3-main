@@ -1,11 +1,16 @@
 <div id="show_star-<%= book.id %>"></div>
 <script>
-    var elem = document.querySelector('#show_star-<%= book.id %>');
-    var opt = {
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        readOnly: true,
-        score: <%= book.star %>
-      };
-      raty(elem,opt);
+$(document).on('turbolinks:load', function() {
+    let elem = document.querySelector('#show_star-<%= book.id %>');
+    if (elem == null) return;
+
+    elem.innerHTML = "";
+    let opt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      score: "<%= book.star %>",
+      readOnly: true,
+    };
+    raty(elem,opt);
+  });
 </script>
