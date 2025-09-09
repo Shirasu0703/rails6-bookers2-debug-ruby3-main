@@ -10,7 +10,9 @@ module ApplicationHelper
     return true if controller_name == 'users' && action_name == "edit"
 
     # 投稿編集ページの非表示
-    return true if controller_name == 'books' && action_name == 'edit'
+    return true if controller_name == 'books' && action_name == "edit"
+
+    return true if controller_name == 'groups' && action_name == "edit"
 
     false
   end
