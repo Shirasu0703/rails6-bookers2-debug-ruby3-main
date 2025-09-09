@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
     # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
+
+  
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
