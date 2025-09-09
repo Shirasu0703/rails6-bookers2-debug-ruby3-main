@@ -4,12 +4,13 @@ class GroupsController < ApplicationController
 
   def index
     @book = Book.new
-    @group = Group.all
+    @groups = Group.all
   end
 
   def show
     @book = Book.new
     @group = Group.find(params[:id])
+    @groups = Group.all
   end
 
   def new
@@ -17,7 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new
+    @group = Group.new(group_params)
     # 誰が作ったグループか判断するために必要
     @group.owner_id = current_user.id
     if @group.save
