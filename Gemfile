@@ -65,3 +65,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 group :devolopment do
   gem 'letter_opener'
 end
+
+/.env
