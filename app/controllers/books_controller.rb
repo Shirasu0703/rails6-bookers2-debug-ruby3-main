@@ -2,8 +2,6 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-
-
   def show
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
@@ -11,6 +9,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    puts "作成したキー#{ENV['SECRET_KEY']}"
     @books = Book.all.order(params[:sort])
     @book = Book.new
   end
