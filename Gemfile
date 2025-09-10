@@ -59,3 +59,9 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'rating'
+
+gem 'dotenv-rails', groups: [:development, :test]
+
+group :devolopment do
+  gem 'letter_opener'
+end

@@ -1,13 +1,16 @@
 class EventMailer < ApplicationMailer
-  def send_notification(member, event)
+  def send_notification
+    member = params[:member]
+    event = params[:event]
+
     @group = event[:group]
     @title = event[:title]
     @body = event[:body]
 
-    @mail = EventMailer.new()
+
 
     mail(
-      from: 'Gmailアドレス',
+      from: ENV['GMAIL_ADDRESS'] || 'no-replay@example.com',
       to:  member.email,
       subject: '新規お知らせ'
     )
@@ -16,7 +19,7 @@ class EventMailer < ApplicationMailer
   def self.send_notifications_to_group(event)
     group = event[:group]
     group.users.each do |member|
-      EventMailer.send_notification(member, event).deliver_now
+      EventMailer.with(member: member, event: event).send_notification.deliver_now
     end
   end
 end
