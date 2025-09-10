@@ -1,4 +1,5 @@
 class GroupUsersController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     group_user = current_user.group_users.new(group_id: params[:group_id])
