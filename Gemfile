@@ -66,4 +66,4 @@ group :devolopment do
   gem 'letter_opener'
 end
 
-/.env
+
